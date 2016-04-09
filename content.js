@@ -1,3 +1,7 @@
+/*
+* Carlhacks project by Joe Adkisson, Jon Bisila, Julia Connelly, and Kiya Govek
+*/
+
 var images = document.getElementsByTagName('img');
 
 for (var i = 0; i < images.length; i++) {
