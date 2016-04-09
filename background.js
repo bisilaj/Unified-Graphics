@@ -19,7 +19,6 @@ chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
 
 // Called when the user clicks on the browser action.
 chrome.browserAction.onClicked.addListener(function(tab) {
-	alert("squid");
 	if (toggle == 0) {
         chrome.browserAction.setIcon({path: "icon.png"});
   		toggle = 1;
