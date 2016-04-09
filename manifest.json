@@ -3,12 +3,14 @@
   "description": "Replace all images with Unicorns",
   "version": "1.0",
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "http://*/*",
+    "https://*/*"
   ],
     
   "background": {
     "scripts": ["background.js"],
-    "persistent": false
+    "persistent": true
   },
 
   // "content_scripts": [
