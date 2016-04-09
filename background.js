@@ -8,6 +8,7 @@ var toggle = 0;
 // Called when a new page finishes updating
 chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
   if (changeInfo.status == 'complete' && tab.active && toggle == 1) {
+
     // do your things
     chrome.tabs.executeScript({
     		file: 'content.js'
