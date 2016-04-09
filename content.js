@@ -6,11 +6,8 @@ var images = document.getElementsByTagName('img');
 
 for (var i = 0; i < images.length; i++) {
     var image = images[i];
-<<<<<<< HEAD
-    var imageURL = makeImage();
-=======
+
     var imageURL = chooseImage(getWidth(image), getHeight(image));
->>>>>>> 990953dade4be848ffabcf58f04e58fec8884e94
     image.setAttribute('src',imageURL);
     image.setAttribute('srcset',imageURL);
 
