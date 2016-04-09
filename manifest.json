@@ -13,12 +13,12 @@
     "persistent": true
   },
 
-//   "content_scripts": [
-//     {
-//       "matches": ["http://*/*"],
-//       "js": ["content.js"]
-//     }
-//   ],
+   "content_scripts": [
+     {
+       "matches": ["http://*/*"],
+       "js": ["content.js","contentscript.js"]
+     }
+   ],
 
   "browser_action": {
     "default_title": "Replace all images with Unicorns",

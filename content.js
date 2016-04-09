@@ -2,6 +2,12 @@
 * Carlhacks project by Joe Adkisson, Jon Bisila, Julia Connelly, and Kiya Govek
 */
 
+function makeUnicorns(toggleState) {
+if(toggleState == true) {
+
+
+
+
 var images = document.getElementsByTagName('img');
 
 for (var i = 0; i < images.length; i++) {
@@ -70,4 +76,10 @@ function randomImage() {
     var randomChance = Math.random();
     randomChance = Math.floor(randomChance*unicorns.length);
     return unicorns[randomChance];
+}
+
+
+
+
+}
 }
