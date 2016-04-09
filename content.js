@@ -6,13 +6,9 @@ var images = document.getElementsByTagName('img');
 
 for (var i = 0; i < images.length; i++) {
     var image = images[i];
-    var imageURL = makeImage();
-    console.log(imageURL);
+    var imageURL = chooseImage(getWidth(image), getHeight(image));
     image.setAttribute('src',imageURL);
     image.setAttribute('srcset',imageURL);
-
-    console.log(getWidth(image));
-    console.log(getHeight(image));
 
 }
 
@@ -46,6 +42,22 @@ function getHeight(image) {
     return ""
 }
 
+function chooseImage(width, height) {
+    if (!width || !height) {
+        return 'https://openmerchantaccount.com/img2/defs_a_unicorn.jpg';
+    } else {
+        var ratio = width / height;
+        if (ratio > 1.5) {
+            return 'https://openmerchantaccount.com/img2/unicorn_cat.jpg';
+        } else if (ratio > 1.3) {
+            return 'https://openmerchantaccount.com/img2/unicorn.png';
+        } else if (ratio > 0.9) {
+            return 'https://openmerchantaccount.com/img2/unicorn_tongue.png';
+        } else {
+            return 'https://openmerchantaccount.com/img2/mlp.png';
+        }
+    }
+}
 
 function makeImage() {
     var unicorns = [
