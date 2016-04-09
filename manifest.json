@@ -1,7 +1,7 @@
 {
-  "name": "Page Redder",
-  "description": "Make the current page red",
-  "version": "2.0",
+  "name": "Unified Graphics",
+  "description": "Replace all images with Unicorns",
+  "version": "1.0",
   "permissions": [
     "activeTab"
   ],
@@ -10,7 +10,7 @@
     "persistent": false
   },
   "browser_action": {
-    "default_title": "Make this page red"
+    "default_title": "Replace all images with Unicorns"
   },
   "manifest_version": 2
 }
