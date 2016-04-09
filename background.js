@@ -79,36 +79,6 @@ chrome.browserAction.onClicked.addListener(function(tab) {
         chrome.browserAction.setIcon({path: "icon.png"});
   		toggle = 1;
   		
-  // 		////////////////////////////////////////////////////////////////
-		// // MAKE AN OBSERVER TO SEE WHEN THE DOM TREE CHANGES STRUCTURE
-		// ////////////////////////////////////////////////////////////////
-		// var target = document.body;
-	 
-		// // create an observer instance
-		// var observer = new MutationObserver(function(mutations) {
-		// 	alert("MUTATION DETECTED. TOGGLE = "+toggle);
-		// 	console.log("MUTATION DETECTED. TOGGLE = "+toggle);
-		// 	if(toggle == 1) {
-		// 		chrome.tabs.executeScript({
-  //   				file: 'content.js'
-  // 				});	
-		// 	}
-		// });
-	 
-		// // configuration of the observer:
-		// var config = { childList: true, subtree:true };
- 
-		// // pass in the target node, as well as the observer options
-		// observer.observe(target, config);
-
-		// alert("OBSERVER IS OBSERVING");
-		// // later, you can stop observing
-		// //observer.disconnect();
-
-
-  		// chrome.tabs.executeScript({
-    // 		file: 'content.js'
-  		// });
 		makeUnicorn(toggle);
   	}
   	else {
