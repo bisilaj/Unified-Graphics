@@ -5,27 +5,48 @@
 
 function makeUnicorns(toggleState) {
 if(toggleState == true) {
-
+    alert("makeUnicorns!");
 replaceImgTags();
 replaceStyleImages();
 
-
 function replaceImgTags() {
+    alert("replaceImgTags!");
     var images = document.getElementsByTagName('img');
     for (var i = 0; i < images.length; i++) {
         var image = images[i];
-
-        var imageURL = chooseImage(getWidth(image), getHeight(image));
-        image.setAttribute('src',imageURL);
-        image.setAttribute('srcset',imageURL);
-
+        alert("image " + i);
         var imageClass = image.getAttribute('class');
-        image.setAttribute('class', imageClass + ' carlhacks_unicorn');
+        var isUnicorn = false;
+        if(imageClass != null) {
+            isUnicorn = image.getAttribute('class').split(' ').some(function(w){return w === 'carlhacks_unicorn'});
+        }
+        alert("isUnicorn: "+ isUnicorn);
+        
+        if(!isUnicorn) {
+            var imageURL = chooseImage(getWidth(image), getHeight(image));
+
+            image.setAttribute('src',imageURL);
+            image.setAttribute('srcset',imageURL);            
+            image.setAttribute('class', imageClass + ' carlhacks_unicorn');
+        }
     }
 }
 
 function replaceStyleImages() {
-    var style_images = document.evaluate("//*[",document, XPathResult.ANY_TYPE, null)
+    var style_images = document.evaluate("//*[contains(@style, 'background:') or contains(@style, 'background-image:')]",
+     document, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);
+    try {
+      var currImage = style_images.iterateNext();
+      
+      while (currImage) {
+        image_style = currImage.getAttribute('style');
+        var background_regex = /background(-image)?:.*(url\(.*?\)).*(;)?$/;
+        currImage = style_images.iterateNext();
+      } 
+    }
+    catch (e) {
+      console.log( 'Error: Document tree modified during iteration ' + e );
+    }
 }
 
 function getWidth(image) {
@@ -34,7 +55,7 @@ function getWidth(image) {
     if (width) {
         return width
     } else if (style) {
-        var width_regex = /width: ([1234567890]*)px;/;
+        var width_regex = /width: ([0-9]*)px;/;
         var width_match = style.match(width_regex);
         if (width_match) {
             return width_match[1]
@@ -49,7 +70,7 @@ function getHeight(image) {
     if (height) {
         return height
     } else if (style) {
-        var height_regex = /height: ([1234567890]*)px;/;
+        var height_regex = /height: ([0-9]*)px;/;
         var height_match = style.match(height_regex);
         if (height_match) {
             return height_match[1]
