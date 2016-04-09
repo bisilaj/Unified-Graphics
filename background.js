@@ -3,7 +3,7 @@
 * Thanks to The Chromium Authors for ideas on source code formatting
 */
 
-var toggle = 0;
+global var toggle = 0;
 
 // ///////////////////////////////////////////////////////////
 
@@ -106,9 +106,10 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 		// //observer.disconnect();
 
 
-  		chrome.tabs.executeScript({
-    		file: 'content.js'
-  		});
+  		// chrome.tabs.executeScript({
+    // 		file: 'content.js'
+  		// });
+		makeUnicorn(toggle);
   	}
   	else {
         chrome.browserAction.setIcon({path: "iconoff.png"});
