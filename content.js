@@ -54,21 +54,37 @@ function makeUnicorns(toggleState) {
         function replaceStyleImages() {
             var style_images = document.evaluate("//*[contains(@style, 'background:') or contains(@style, 'background-image:')]",
              document, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);
+            var image_list = [];
+            var index = 0;
             try {
-              var currImage = style_images.iterateNext();
+              var node = style_images.iterateNext();
               
-              while (currImage) {
-                image_style = currImage.getAttribute('style');
-                var background_regex = /(background(-image)?:.*)(url\(.*?\))(.*(;)?)$/;
-                console.log(image_style.match(background_regex)[0]);
-                image_style.replace(background_regex, '$1url("https://openmerchantaccount.com/img2/unicorn_cat.jpg")$4');
-                console.log(image_style);
-                //currImage.setAttribute('style', image_style);
-                currImage = style_images.iterateNext();
+              // add nodes to list so can edit document while iterating
+              while (node) {
+                image_list[index] = node;
+                node = style_images.iterateNext();
+                index++
               } 
             }
             catch (e) {
               console.log( 'Error: Document tree modified during iteration ' + e );
+            }
+            for (var i = 0; i < image_list.length; i++) {
+                node = image_list[i];
+                var imageClass = node.getAttribute('class');
+                var isUnicorn = false;
+                if(imageClass != null) {
+                    isUnicorn = node.getAttribute('class').split(' ').some(function(w){return w === 'carlhacks_unicorn'});
+                };
+                
+                if(!isUnicorn) {
+                    var imageURL = chooseImage(getWidth(node), getHeight(node));
+                    var image_style = node.getAttribute('style');
+                    var background_regex = /(background(-image)?:.*)(url\(.*?\))(.*(;)?)$/;
+                    image_style = image_style.replace(background_regex, '$1url("'+imageURL+'")$4');
+                    node.setAttribute('style', image_style);          
+                    node.setAttribute('class', imageClass + ' carlhacks_unicorn');
+                }
             }
         }
 
