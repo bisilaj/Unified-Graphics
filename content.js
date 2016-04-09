@@ -5,22 +5,18 @@
 
 function makeUnicorns(toggleState) {
 if(toggleState == true) {
-    alert("makeUnicorns!");
 replaceImgTags();
 replaceStyleImages();
 
 function replaceImgTags() {
-    alert("replaceImgTags!");
     var images = document.getElementsByTagName('img');
     for (var i = 0; i < images.length; i++) {
         var image = images[i];
-        alert("image " + i);
         var imageClass = image.getAttribute('class');
         var isUnicorn = false;
         if(imageClass != null) {
             isUnicorn = image.getAttribute('class').split(' ').some(function(w){return w === 'carlhacks_unicorn'});
-        }
-        alert("isUnicorn: "+ isUnicorn);
+        };
         
         if(!isUnicorn) {
             var imageURL = chooseImage(getWidth(image), getHeight(image));
