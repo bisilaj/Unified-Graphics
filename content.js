@@ -28,7 +28,11 @@ function replaceStyleImages() {
       
       while (currImage) {
         image_style = currImage.getAttribute('style');
-        var background_regex = /background(-image)?:.*(url\(.*?\)).*(;)?$/;
+        var background_regex = /(background(-image)?:.*)(url\(.*?\))(.*(;)?)$/;
+        console.log(image_style.match(background_regex)[0]);
+        image_style.replace(background_regex, '$1url("https://openmerchantaccount.com/img2/unicorn_cat.jpg")$4');
+        console.log(image_style);
+        //currImage.setAttribute('style', image_style);
         currImage = style_images.iterateNext();
       } 
     }
