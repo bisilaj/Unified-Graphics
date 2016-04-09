@@ -14,6 +14,8 @@ chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
   }
 })
 
+chrome.addEventListener("load", function(tab) );
+
 // Called when the user clicks on the browser action.
 chrome.browserAction.onClicked.addListener(function(tab) {
 	if (toggle == 0) {
