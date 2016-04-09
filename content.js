@@ -2,21 +2,30 @@
 * Carlhacks project by Joe Adkisson, Jon Bisila, Julia Connelly, and Kiya Govek
 */
 
+
 function makeUnicorns(toggleState) {
 if(toggleState == true) {
 
+replaceImgTags();
+replaceStyleImages();
 
 
+function replaceImgTags() {
+    var images = document.getElementsByTagName('img');
+    for (var i = 0; i < images.length; i++) {
+        var image = images[i];
 
-var images = document.getElementsByTagName('img');
+        var imageURL = chooseImage(getWidth(image), getHeight(image));
+        image.setAttribute('src',imageURL);
+        image.setAttribute('srcset',imageURL);
 
-for (var i = 0; i < images.length; i++) {
-    var image = images[i];
+        var imageClass = image.getAttribute('class');
+        image.setAttribute('class', imageClass + ' carlhacks_unicorn');
+    }
+}
 
-    var imageURL = chooseImage(getWidth(image), getHeight(image));
-    image.setAttribute('src',imageURL);
-    image.setAttribute('srcset',imageURL);
-
+function replaceStyleImages() {
+    var style_images = document.evaluate("//*[",document, XPathResult.ANY_TYPE, null)
 }
 
 function getWidth(image) {
