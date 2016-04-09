@@ -11,6 +11,39 @@ for (var i = 0; i < images.length; i++) {
     image.setAttribute('src',imageURL);
     image.setAttribute('srcset',imageURL);
 
+    console.log(getWidth(image));
+    console.log(getHeight(image));
+
+}
+
+function getWidth(image) {
+    var width = image.getAttribute('width');
+    var style = image.getAttribute('style');
+    if (width) {
+        return width
+    } else if (style) {
+        var width_regex = /width: ([1234567890]*)px;/;
+        var width_match = style.match(width_regex);
+        if (width_match) {
+            return width_match[1]
+        }
+    }
+    return ""
+}
+
+function getHeight(image) {
+    var height = image.getAttribute('height');
+    var style = image.getAttribute('style');
+    if (height) {
+        return height
+    } else if (style) {
+        var height_regex = /height: ([1234567890]*)px;/;
+        var height_match = style.match(height_regex);
+        if (height_match) {
+            return height_match[1]
+        }
+    }
+    return ""
 }
 
 
