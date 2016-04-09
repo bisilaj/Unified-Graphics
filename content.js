@@ -1,18 +1,6 @@
-var elements = document.getElementsByTagName('*');
+var images = document.getElementsByTagName('img');
 
-for (var i = 0; i < elements.length; i++) {
-    var element = elements[i];
-
-    for (var j = 0; j < element.childNodes.length; j++) {
-        var node = element.childNodes[j];
-
-        if (node.nodeType === 3) {
-            var text = node.nodeValue;
-            var replacedText = text.replace(/the/gi, 'poot');
-
-            if (replacedText !== text) {
-                element.replaceChild(document.createTextNode(replacedText), node);
-            }
-        }
-    }
+for (var i = 0; i < images.length; i++) {
+    var image = images[i];
+    image.setAttribute('src','http://img05.deviantart.net/28eb/i/2011/180/c/9/unicorn_poop_by_gremlinlegions-d3kh3s4.jpg');
 }
