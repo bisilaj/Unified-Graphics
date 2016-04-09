@@ -13,12 +13,12 @@
     "persistent": true
   },
 
-//   "content_scripts": [
-//     {
-//       "matches": ["http://*/*"],
-//       "js": ["content.js"]
-//     }
-//   ],
+   "content_scripts": [
+     {
+       "matches": ["http://*/*"],
+       "js": ["content.js","contentscript.js"]
+     }
+   ],
 
     "icons": { "16": "icon.png",
            "48": "icon.png",
