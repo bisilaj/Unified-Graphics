@@ -1,8 +1,26 @@
+<<<<<<< HEAD
+{
+  "name": "Page Redder",
+  "description": "Make the current page red",
+  "version": "2.0",
+  "permissions": [
+    "activeTab"
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_title": "Make this page red"
+  },
+  "manifest_version": 2
+}
+=======
 {
   "manifest_version": 2,
 
-  "name": "Getting started example",
-  "description": "This extension shows a Google Image search result for the current page",
+  "name": "Unified Graphics",
+  "description": "This extension replaces all images on a page with unicorns.",
   "version": "1.0",
 
   "browser_action": {
@@ -14,3 +32,4 @@
     "https://ajax.googleapis.com/"
   ]
 }
+>>>>>>> 8fd636273d5120731236cf92c8346d5bce9ad412
