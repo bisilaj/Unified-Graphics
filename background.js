@@ -2,8 +2,7 @@
 * Carlhacks project by Joe Adkisson, Jon Bisila, Julia Connelly, and Kiya Govek
 * Thanks to The Chromium Authors for ideas on source code formatting
 */
-
-global var toggle = 0;
+var toggle = 0;
 
 // ///////////////////////////////////////////////////////////
 
