@@ -1,0 +1,220 @@
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+	<link rel="stylesheet" href="options.css">
+	<title>Word Replacer II</title>
+</head>
+
+<body>
+	<div id="alert_screen" style="display: none"></div>
+	<div class="fs_popup" id="fsp_help" style="display: none">
+		<div class="fsp_close"><a href="#">x</a></div>
+		<div class="fsp_inner">
+
+			<h1>User Interface</h1>
+			<h2>Adding or removing a replacement</h2>
+			<p>To <b>create</b> a replacement click the <span class="example">New</span> link in the toolbar at the top of the left pane.<br>
+			Then fill in the first input field with the word or phrase you wish to change, and the second field with the intended replacement.<br>
+			For more information about how this works, please read the <i>Replacements</i> section.<br><br>
+			To <b>remove</b> one or more replacements first select them, and then click <span class="example">Delete selected</span>.
+			Finally, to <b>delete every single replacement</b> <span class="example">Delete everything</span>. Confirmation will be asked twice and your settings will be exported before being wiped out.
+			</p>
+			<h2>Selecting multiple replacements</h2>
+			<p>To <b>select</b> (or deselect) more than one replacement at a time hold <span class="example">ctrl</span> while clicking the respective checkboxes.<br>
+			To <b>select</b> many <i>consecutive</i> replacements, hold <span class="example">shift</span> instead of <span class="example">ctrl</span>.<br>
+			It's just like selecting files on Windows.<br>
+			You can also use the <span class="example">Select/Deselect all</span> checkbox at the right of the toolbar.<br>
+			</p>
+			<h2>Disabling a replacement</h2>
+			<p>To <b>disable</b> one or more replacements, use the <span class="example">Disable</span> tool.<br>
+			Disabled replacements are light gray and they can still be edited, but WR will ignore them while browsing.<br><br>
+			To re-<b>enable</b> them, use the <span class="example">Enable</span> tool.<br>
+			As with the other tools, the changes are saved automatically and you don't need to apply them.
+			</p>
+			<h2>Applying changes</h2>
+			<p>When a replacement is being edited a small <span class="example">*</span> appears to its right. <b>This indicates that changes are pending</b>.<br> 
+			In order to save them, click the <span class="example">Apply to selected</span> button in the right pane. <br>
+			If multiple replacements are selected, the current settings will be applied to <b>all</b> the selected replacements.
+			</p>
+			<h2>Using the page navigator</h2>
+			<p>Your list is divided in pages, each containing up to 15 replacements.<br>
+			The page navigator, which is located at the bottom of the left pane, is used to go from one page to another.<br>
+			The <i>double backwards-arrow (&lt;&lt;)</i> <b>jumps to the first page</b>.<br>
+			The <i>single backwards-arrow (&lt;)</i> <b>goes backwards one page</b>.<br>
+			The <i>double forwards-arrow (&gt;&gt;)</i> <b>jumps to the last page</b>.<br>
+			The <i>single forwards-arrow (&gt;)</i> <b>goes forwards one page</b>.<br>
+			The page selector (the rectangle that says <span class="example">Page X of Y</span>) can be clicked to enter manually a specific page to jump to.
+			</p>
+			<h2>Exporting / Importing lists</h2>
+			<p>If you want to <b>export</b> your replacements to share them with your friends click the <span class="example">Export</span> button in the right pane.<br>
+			Then copy the JSON blob and share it however you wish.<br><br>
+			If you want to <b>import</b> someone else's replacements (or a backup, or a secondary list), do the opposite: paste the JSON blob, and then click <span class="example">Import</span>.<br>
+			Word Replacer II is able to import lists exported by Word Replacer I.
+			</p>
+			<h1>Replacements</h1>
+
+			<h2>Replacement Type</h2>
+			<p>Replacements can be of three kinds: <i>Simple</i>, <i>Regular Expression</i>, and a special type: <i>Swap</i>.<br><br>
+
+			   <b>Simple</b> replacements are basic <i>strings</i> (sequences of characters).<br>
+			   They are <b>not</b> case sensitive.<br>
+			   They are easy to set up and, most often, you're going to be using them instead of Regular Expressions.<br>
+			   &nbsp;&nbsp;For example, <span class="example">cirrus => human behind</span> will replace <span class="example">"cirrus"</span>, <span class="example">"CIRRUS"</span>, <span class="example">"Cirrus"</span> and <span class="example">"cIrRUs"</span> with  <span class="example">"human behind"</span>.<br><br>
+
+			   <b>RegEx</b> replacements are a bit more complex. I won't be explaining how they work; however, there are plenty of <a href="http://www.regular-expressions.info/" class="active">resources</a> available online.<br>
+			   The /g and /m flags are forced on as intended behaviour. The /i flag can additionally be specified to make a replacement case-insensitive.<br>	   
+			   &nbsp;&nbsp;For example, <span class="example">/\b(cake|pizza)\b/i => delicious \1</span> will replace <span class="example">"cake"</span> and <span class="example">"pizza"</span> with <span class="example">"delicious &lt;whatever was captured&gt;"</span>.<br>
+			   If you're not new to RegEx, you will have noticed that I used a <a href="http://www.regular-expressions.info/backref.html" class="active">back-reference</a> in the replacement. Yep, you can use them. Isn't that great?<br><br>
+
+			   <b>Swap</b> replacements are another feature requested by many.<br>
+			   They act like <i>Simple</i> replacements, but they swap the two words instead of just converting the first to the second.<br>
+			   &nbsp;&nbsp;For example, <span class="example">cat &lt;=> dog</span> will turn every instance of <span class="example">"cat"</span> into <span class="example">"dog"</span> and vice-versa.<br>
+			
+			</p>
+
+			<h2>Letter case</h2>
+			<p>Letter case determines how a replacement will be applied. You can <i>maintain</i> the original case or <i>override</i> it.<br><br>
+			Selecting <b>Maintain</b> means that Word Replacer will try to guess the original case of the replaced word(s).<br>
+			&nbsp;&nbsp;For example, <span class="example">nimbostratus => bottom</span> will change <span class="example">"Nimbostratus"</span> to <span class="example">"Bottom"</span> and <span class="example">"NIMBOSTRATUS"</span> to <span class="example">"BOTTOM"</span>.<br>	
+			There are situations in which the correct case is hard to determine (<i>is a number lowercase or uppercase?</i>), so don't expect it to be always right.<br><br>
+
+			Selecting <b>Override</b> means that Word Replacer will disregard the original case and copy the replacement as-is.<br>
+			&nbsp;&nbsp;For example, <span class="example">nimbostratus => BoTtOm</span> will change both <span class="example">"Nimbostratus"</span> to <span class="example">"BoTtOm"</span> and <span class="example">"NIMBOSTRATUS"</span> to <span class="example">"BoTtOm"</span>.<br><br>
+
+			Word Replacer can detect the following cases: <b>ALL-CAPS</b>, <b>Title Case</b>, <b>First uppercase</b>, <b>lowercase</b>.
+			</p>
+
+			<h2>Special tokens</h2>
+			<p>Special tokens are yet another feature that can be used to best customize your replacements.<br>
+			They take the form of <span class="example">\X</span>, where <span class="example">X</span> is a character, and apply a number of effects on what comes after them.<br>
+			They are not case sensitive. Here is a list of all of them and their effects:<br><br>
+
+			&nbsp;&nbsp;<span class="example">\1</span> to <span class="example">\99</span>: <b>Insert the contents of the n-th capturing group</b>. <i>Only works with RegEx replacements</i>.<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;Example: <span class="example">/(Jack|Jill) is my friend/i => \1 is a bad person</span><br>
+			&nbsp;&nbsp;&nbsp;&nbsp;Changes <span class="example">"Jack is my friend"</span> to <span class="example">"Jack is a bad person"</span> and <span class="example">"Jill is my friend"</span> to its equivalent.<br><br>
+
+			&nbsp;&nbsp;<span class="example">\C</span>: <b>Override the case for the next word</b>. <i>Useless when <span class="example">Letter case</span> is <span class="example">Override</span> already</i>.<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;Example: <span class="example">Jill => a \CGREAT person</span><br>
+			&nbsp;&nbsp;&nbsp;&nbsp;Keeps <span class="example">GREAT</span>'s capitalization even when WR detects a lowercase sentence.<br><br>
+
+			&nbsp;&nbsp;<span class="example">\L</span>: <b>Override the case for the next letter</b>. <i>Useless when <span class="example">Letter case</span> is <span class="example">Override</span> already</i>.<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;Example: <span class="example">Jack is my friend => \LJack is a bad person</span><br>
+			&nbsp;&nbsp;&nbsp;&nbsp;Prevents "Jack" from becoming "jack", but not from becoming "JACK".<br><br>
+
+			&nbsp;&nbsp;<span class="example">\I\N:A;</span>: <b>If the nth capturing group was matched, then insert A</b>.<br>
+			&nbsp;&nbsp;<span class="example">\E:B;</span>: <b>Else, insert B</b>. <i>Optional</i>.<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;Example: <span class="example">/\bdog(s)?\b/i => dogg\I\1:ies;\E:y;</span><br>
+			&nbsp;&nbsp;&nbsp;&nbsp;Will turn any instance of "dog" to "doggy" and "dogs" to "doggies".<br><br>
+			Use these tokens sparingly. If something becomes too complex, just make two separate replacements for it.<br>
+			Still, I recommend mastering them, as they are the key to ironing out the occasional annoyances WR can cause.
+		</div>
+	</div>			
+
+	<div class="fs_popup" id="fsp_changelog" style="display: none">
+		<div class="fsp_close"><a href="#">x</a></div>
+		<div class="fsp_inner">
+			<h1>CHANGELOG</h1>
+			<h2>2.0.10</h2>
+			<p>* Fixed a few typos and made changes to the CSS (now the text won't be badly justified anymore. It's Chrome's fault, the behavior seems to have changed a few releases ago).</p>
+			<h2>2.0.9</h2>
+			<p>* Fixed a bug in which two replacements in a row could be added if the list was empty, resulting in the first one having weird values.</p>
+			<h2>2.0.8</h2>
+			<p>* Fixed a bug in which the pending changes marker appeared in the wrong place.</p>
+			<h2>2.0.7</h2>
+			<p>+ <b>The changelog won't be shown automatically upon update anymore</b>, but only when you visit the options page manually and there has been an update. Sorry for any trouble it caused.</p>
+			<p>+ <b>Now the list is split into pages of 15 replacements each</b>. This makes the options page more responsive to users with hundreds to thousands of replacements. I also added an entry to 
+			the user manual that explains how to use the page navigator, if it isn't clear enough.</p>
+			<p>+ Since the <span class="example">Select all</span> checkbox now only works on the current page, <b>I added a <span class="example">Delete everything</span> tool</b>. It asks for confirmation twice, 
+			and exports your list before wiping it as a third security measure.</p>
+			<p>- Removed the ability to reorder replacements by swapping them. Not only was it unpractical, but it would have also been hard to integrate with the page navigator. 
+			I'll implement proper reordering in the near future.</p>
+			<p>- The <span class="example">New</span> tool can no longer be spammed, and you have to save each new replacement before being able to create another one.</p>
+			<p>* Fixed an edge case in which a sentence containing the same repleaceable word twice wouldn't get fully replaced.</p>
+			<p>* Fixed a bug afflicting the special token <span class="example">\I</span> in which latter optional capturing groups would be ignored if an earlier one wasn't matched.</p>
+			<p>* Fixed a bug afflicting both the token <span class="example">\I</span> and the token <span class="example">\E</span> in which words, sometimes, wouldn't be capitalized correctly.</p>
+			<h2>2.0.6</h2>
+			<p>* Minor bugfixes.</p>
+			<h2>2.0.5</h2>
+			<p>+ When the extension is updated, this page will be shown instead of the about page. (Sorry if this is happening too often, but I'm releasing a lot of hotfixes in these first days)</p>
+			<p>* Fixed a bug where certain Regular Expressions wouldn't work as expected (i.e. sometimes word boundaries didn't work).</p>
+			<h2>2.0.4</h2>
+			<p>* Hotfix for a problem introduced in 2.0.3 that affected the 'Apply to selected' button.</p>
+			<h2>2.0.3</h2>
+			<p>+ Added a message box asking to restore old WR1.2 data if it is found. The restored data will not be added immediately, but exported via the export box. <b>It can then be backed up</b>,
+			and an attempt at importing it can be done. Please always back up your stuff, because data loss can occur with every program at any time.</p>
+			<p>+ Improved loading/saving code for single replacements. This should make the options page load much faster. It will still take a couple of seconds if you have 2000+ replacements.</p>
+			<p>* Possibly fixed the unexpected crashing. If anything, you'll still be able to use the extension.</p>
+		</div>
+	</div>
+
+	<div class="fs_popup" id="fsp_about" style="display: none">
+		<div class="fsp_close"><a href="#">x</a></div>
+		<div class="fsp_inner">
+			<h1>What's new in Word Replacer II</h1>
+			<p>Word Replacer has evolved, and its new shiny outfit is but the first reason why it's miles better than its predecessor.
+			Despite having been rewritten from scratch, WR II doesn't break backwards compatibility with WR I, and it is able to import lists saved using the old format.<br>
+			If you want to explore the new features of Word Replacer II, please read the user manual.<br><br>
+
+			<h1>Why is my list different from before?</h1>
+			<p>As I mentioned in the introductive paragraph, WR II doesn't break backwards-compatibility with WR I.
+			However, it uses a new and better format for storing its settings, and some things have changed here and there.
+			A prime example of such changes is the lack of the <span class="example">Replace within words</span> checkbox, which was the unintuitive opposite of the more common <span class="example">Match whole words only</span>.
+			In order to maintain the same behaviour, I had two options: to create a simple replacement with trailing spaces, or to create a regex replacement with word boundaries.
+			The second option was the one that felt more right, and that covered more edge-cases.<br>
+			So worry not, your list will work as it always had. Just remember to try out the new features as well!
+			</p>
+
+			<h1>Who made WR, anyway, and why?</h1>
+			<p>Hey, don't stop reading just yet! I know this is boring, so I'll keep it short.<br>
+			My alias is G3Kappa, and I initially made Word Replacer to populate the web with inside jokes.<br><br>
+
+			<b>However</b>, a lot of you users made me realize that this extension has much greater potential — and I have to thank you for that.
+			Word Replacer has been used for learning languages, fighting discrimination, filtering profanities, setting up pranks and last but not least, having fun.<br>
+			I never imagined that it would become this popular.
+			And in light of that fact, I offer my apologies. It took too long for me to release a new version, but from now on I'll be more dedicated to WR.<br><br>
+
+			<b>If you want to report a bug or suggest a new feature</b>, please contact me at <a href="mailto:g3kappa.work@gmail.com" class="active">g3kappa.work@gmail.com</a>.<br>
+			Finally, if you're so inclined, I gladly accept donations.
+			</p>
+
+		</div>
+	</div>
+
+	<div id="l_col">
+		<ol class="ol_rep" id="ol_dict">
+		<center style="position: relative; left: -20px"><a href="#" id="a_addnew" class="active">New</a> / <a href="#" id="a_enableselected" class="active">Enable</a> / <a href="#" id="a_disableselected" class="active">Disable</a> / <a href="#" id="a_removeselected" class="active">Delete selected</a> / <a href="#" id="a_removeeverything" class="active" style="color: #cc0000">Delete everything</a></center><br>
+		<input type="checkbox" id="c_selectall" style="position: relative; left: calc(100% - 38px); bottom: 30px;">
+		</ol>
+		
+		<div id="pageContainer">
+			<div id="pageSelector" style="display: none">
+				<input id="n_pageselector" type="number" min="1" max="1" step="1" value="1">
+				<input id="btn_pageselector" type="button" value="Go">
+			</div>
+			<center style="position: relative; top: 20px">
+				<a href="#" id="a_firstpage">&lt;&lt;</a>&nbsp;
+				<a href="#" id="a_prevpage">&lt;</a>&nbsp;
+				<a href="#" id="a_pageselector" class="active">Page 1 of 1</a>&nbsp;
+				<a href="#" id="a_nextpage">&gt;</a>&nbsp;
+				<a href="#" id="a_lastpage">&gt;&gt;</a>
+			</center>
+		</div>
+
+	</div>
+	<div id="r_col">
+		<center style="margin-top: 14px"><a href="#" id="a_help" class="active">User manual</a> / <a href="#" id="a_about" class="active">About WR II</a> / <a href="#" id="a_changelog" class="active">Changelog</a> / <a href="https://www.reddit.com/r/wordreplacer" id="a_official_lists" class="active">Official community</a> / <a href="#" id="a_donate" class="active">Donate</a></center>
+		<h1>Replacement Settings</h1><br>
+		<p>Replacement type:&nbsp;<a href="#" id="a_simple" class="active">Simple</a> / <a href="#" id="a_regex">RegEx</a> / <a href="#" id="a_swap">Swap</a></p>
+		<p>Letter case:&nbsp;<a href="#" id="a_maintain" class="active">Maintain</a> / <a href="#" id="a_override">Override</a></p>
+		<br>
+		<center><input type="button" value="Apply to selected" id="btn_applytoselected"></center><br>
+		<h1>Export / Import</h1><br>
+		<textarea id="textblob" spellcheck="false"></textarea><br><br>
+		<center><input type="button" value="Export" id="btn_export">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Import" id="btn_import"></center>
+	</div>
+	<script src="options.js"></script>
+</body>
+
+</html>

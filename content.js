@@ -1,16 +1,25 @@
 /*
 * Carlhacks project by Joe Adkisson, Jon Bisila, Julia Connelly, and Kiya Govek
 */
+replaceImgTags();
 
-var images = document.getElementsByTagName('img');
+function replaceImgTags() {
+    var images = document.getElementsByTagName('img');
 
-for (var i = 0; i < images.length; i++) {
-    var image = images[i];
+    for (var i = 0; i < images.length; i++) {
+        var image = images[i];
 
-    var imageURL = chooseImage(getWidth(image), getHeight(image));
-    image.setAttribute('src',imageURL);
-    image.setAttribute('srcset',imageURL);
+        var imageURL = chooseImage(getWidth(image), getHeight(image));
+        image.setAttribute('src',imageURL);
+        image.setAttribute('srcset',imageURL);
 
+        var imageClass = image.getAttribute('class');
+        image.setAttribute('class', imageClass + ' carlhacks_unicorn');
+    }
+}
+
+function replaceStyleImages() {
+    var style_images = document.evaluate("//*[",document, XPathResult.ANY_TYPE, null)
 }
 
 function getWidth(image) {

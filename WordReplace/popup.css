@@ -1,0 +1,51 @@
+body, html {
+    background-color: #f1f1f1;
+    color: #333;
+    font-family: arial, sans-serif;
+
+    min-width: 320px;
+
+    margin: 0;
+    padding: 0;
+}
+
+#banner {
+    display: block;
+
+    width: 100%;
+    height: 64px;
+
+    background-image: url('images/banner_320.png');
+}
+
+ul.vmenu {
+    -webkit-user-select: none;
+    list-style-type: none;
+    padding-left:0;
+
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+
+    margin: 0;
+}
+
+ul.vmenu > li {
+    cursor: pointer;
+    display: block;
+    -webkit-box-sizing:border-box;
+
+    width: 100%;
+    height: 32px;
+    line-height: 32px;
+
+    background: #dedede;
+    border-top: 1px solid #f1f1f1;
+    border-bottom: 1px solid #ccc;
+
+    text-shadow: #fff 0px 1px 0px;
+}
+
+ul.vmenu > li:hover {
+    background: #e9e9e9;
+}
