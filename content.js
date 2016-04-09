@@ -44,7 +44,7 @@ function getHeight(image) {
 
 function chooseImage(width, height) {
     if (!width || !height) {
-        return 'https://openmerchantaccount.com/img2/defs_a_unicorn.jpg';
+        return randomImage();
     } else {
         var ratio = width / height;
         if (ratio > 1.5) {
@@ -59,7 +59,7 @@ function chooseImage(width, height) {
     }
 }
 
-function makeImage() {
+function randomImage() {
     var unicorns = [
                     'https://openmerchantaccount.com/img2/unicorn.png',
                     'https://openmerchantaccount.com/img2/defs_a_unicorn.jpg',
