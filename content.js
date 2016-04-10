@@ -4,6 +4,10 @@
 
     //Create an observer...
     var target = document.body;
+
+    chrome.runtime.onMessage.addListener(function(request) {
+        toggle = request.greeting;
+    });
  
     // create an observer instance
     var observer = new window.MutationObserver(function(mutations) {
@@ -11,7 +15,13 @@
             console.log('mutation type: '+ mutation.type);
             if(mutation.type == 'childList') {
                 if (mutation.addedNodes.length >= 1) {
-                    makeUnicorns(true);
+                          
+                    chrome.runtime.sendMessage({greeting: "gimme the toggle dammit"});
+                    chrome.runtime.onMessage.addListener(function(request) {
+                        var toggle = request.greeting;
+                    });
+                    
+                    makeUnicorns(toggle);
                 }
             }
         });
@@ -22,13 +32,18 @@
     // pass in the target node, as well as the observer options
     observer.observe(target, config);
     
-    makeUnicorns(true);
+    chrome.runtime.sendMessage({greeting: "gimme the toggle dammit"});
+    chrome.runtime.onMessage.addListener(function(request) {
+        var toggle = request.greeting;
+    });
+
+    makeUnicorns(toggle);
 
 
 // Unicorn Mega-function. Makes all images on a page into unicorn images.
 function makeUnicorns(toggleState) {
     console.log("Making some unicorns...");
-    if(toggleState == true) {
+    if(toggleState == 1) {
         console.log("Received go-ahead for unification...");
         replaceImgTags();
         replaceStyleImages();
