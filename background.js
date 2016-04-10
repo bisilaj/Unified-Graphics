@@ -2,7 +2,6 @@
 * Carlhacks project by Joe Adkisson, Jon Bisila, Julia Connelly, and Kiya Govek
 * Thanks to The Chromium Authors for ideas on source code formatting
 */
-
 var toggle = 0;
 
 // Called when the user clicks on the browser action.
@@ -11,7 +10,7 @@ chrome.browserAction.onClicked.addListener(function(tab) {
         chrome.browserAction.setIcon({path: "icon.png"});
   		toggle = 1;
   		
-		makeUnicorn(toggle);
+		makeUnicorns(toggle);
   	}
   	else {
         chrome.browserAction.setIcon({path: "iconoff.png"});

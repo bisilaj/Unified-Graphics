@@ -136,8 +136,8 @@ var unicornList = [
                 return randomImage();
             } else {
                 var ratio = width / height;
-                if (ratio > 1.5) {
-                    return 'https://openmerchantaccount.com/img2/unicorn_cat.jpg';
+                if (ratio == 1.0) {
+                    return randomSquareImage();
                 } else if (ratio > 1.3) {
                     return 'https://openmerchantaccount.com/img2/unicorn.png';
                 } else if (ratio > 0.9) {
@@ -178,4 +178,15 @@ var unicornList = [
             randomChance = Math.floor(randomChance*unicorns.length);
             return unicorns[randomChance];
         }
+
+        function randomSquareImage(){
+            var squareUnicorns = [
+                                    'https://openmerchantaccount.com/img2/unicorn_tongue.png' ]
+            var randomChance = Math.random();
+            randomChance = Math.floor(randomChance*squareUnicorns.length);
+            return squareUnicorns[randomChance];
+
+        }
+
+    //}
 }
