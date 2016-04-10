@@ -9,17 +9,18 @@ function getDimensions(url) {
   var img = $('<img src="'+url+'"/>').load(function(){
       finalImageList.push([url,this.width,this.height]);
       //alert(this.width + ' x ' + this.height);
-      alert("imagelist: "+finalImageList);
+      //alert("imagelist: "+finalImageList);
   });
 }
 
 var finalImageList = [];
 var imageList = ['https://openmerchantaccount.com/img2/unicorn.png',
-                 'https://openmerchantaccount.com/img2/defs_a_unicorn.jpg',
-                 'https://openmerchantaccount.com/img2/unicorn_tongue.png',
-                 'https://openmerchantaccount.com/img2/unicorn_cat.jpg',
-                 'https://openmerchantaccount.com/img2/evil unicorn.jpg',
-                 'https://openmerchantaccount.com/img2/mlp.png'];
+                'https://openmerchantaccount.com/img2/defs_a_unicorn.jpg',
+                'https://openmerchantaccount.com/img2/unicorn_tongue.png',
+                'https://openmerchantaccount.com/img2/unicorn_cat.jpg',
+                'https://openmerchantaccount.com/img2/spikes.jpg',
+                'https://openmerchantaccount.com/img2/night-mare.jpg',
+                'https://openmerchantaccount.com/img2/mlp.png'];
 
 // Add everything to the list, with dimensions attached.
 for(var i = 0; i < imageList.length-1; i++) {
