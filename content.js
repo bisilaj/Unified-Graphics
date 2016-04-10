@@ -27,10 +27,12 @@
 
 // Unicorn Mega-function. Makes all images on a page into unicorn images.
 function makeUnicorns(toggleState) {
+    console.log("Making some unicorns...");
     if(toggleState == true) {
+        console.log("Received go-ahead for unification...");
         replaceImgTags();
         replaceStyleImages();
-
+    }
         function replaceImgTags() {
             var images = document.getElementsByTagName('img');
             for (var i = 0; i < images.length; i++) {
@@ -146,6 +148,7 @@ function makeUnicorns(toggleState) {
             randomChance = Math.floor(randomChance*unicorns.length);
             return unicorns[randomChance];
         }
+
         function randomSquareImage(){
             var squareUnicorns = [
                                     'https://openmerchantaccount.com/img2/unicorn_tongue.png' ]
