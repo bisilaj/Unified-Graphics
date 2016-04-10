@@ -157,9 +157,6 @@ function makeUnicorns(toggleState) {
         }
 
 
-
-
-
         function chooseImage(width, height) {
             if (!width || !height) {
                 console.log("values not found; using a random image.");
@@ -174,14 +171,6 @@ function makeUnicorns(toggleState) {
         // width / height.
         function chooseBestImage(width, height) {
 
-            // url, width, height
-            // var TempunicornList = [
-            //         ['https://openmerchantaccount.com/img2/unicorn.png',264, 191],
-            //         ['https://openmerchantaccount.com/img2/defs_a_unicorn.jpg',236, 211],
-            //         ['https://openmerchantaccount.com/img2/unicorn_tongue.png',540,530],
-            //         ['https://openmerchantaccount.com/img2/unicorn_cat.jpg',1920,1080],
-            //         ['https://openmerchantaccount.com/img2/mlp.png',1024,1103]
-            //       ];
 
 
             var ratio = width / height; // ratio of our image

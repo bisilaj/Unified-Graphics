@@ -10,6 +10,8 @@ https://openmerchantaccount.com/img2/defs_a_unicorn.jpg
 https://openmerchantaccount.com/img2/unicorn_tongue.png
 https://openmerchantaccount.com/img2/unicorn_cat.jpg
 https://openmerchantaccount.com/img2/mlp.png
+https://openmerchantaccount.com/img2/swirl.png
+https://openmerchantaccount.com/img2/moon_unicorn.jpg
 
 Current Issues:
 
