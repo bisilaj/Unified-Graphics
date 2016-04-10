@@ -10,7 +10,6 @@
     // create an observer instance
     var observer = new window.MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
-            console.log('mutation type: '+ mutation.type);
             if(mutation.type == 'childList') {
                 if (mutation.addedNodes.length >= 1) {
                     // // We don't need to ask for toggle again - we should already know,
@@ -65,7 +64,6 @@ function makeUnicorns(toggleState) {
 
     
     if(toggleState == 1) {
-        console.log("Making some unicorns...");
         replaceImgTags();
         replaceStyleImages();
     }
@@ -159,7 +157,6 @@ function makeUnicorns(toggleState) {
 
         function chooseImage(width, height) {
             if (!width || !height) {
-                console.log("values not found; using a random image.");
                 return randomImage();
             } else {
                 return chooseBestImage(width, height);
@@ -203,7 +200,6 @@ function makeUnicorns(toggleState) {
                 // If the new one is worse, do nothing
 
             }
-            console.log("best contender is image " + bestIndex + " with aspect ratio " + bestRatio);
             return unicornImageList[bestIndex][0];
         }
 
