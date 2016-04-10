@@ -209,7 +209,7 @@ function makeUnicorns(toggleState) {
             var squareUnicorns = [
                                     'https://openmerchantaccount.com/img2/unicorn_tongue.png',
                                     'https://openmerchantaccount.com/img2/swirl.png',
-                                    'https://openmerchantaccount.com/img2/moon_unicorn.jpg' ]
+                                    'https://openmerchantaccount.com/img2/moon_unicorn.jpg']
             var randomChance = Math.random();
             randomChance = Math.floor(randomChance*squareUnicorns.length);
             return squareUnicorns[randomChance];
