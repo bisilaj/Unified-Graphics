@@ -3,6 +3,7 @@
 */
 
     var toggle = 0; // default to 0, but this should be set the right value pretty fast
+    var unicornImageList = [];
 
     // create an observer instance
     var observer = new window.MutationObserver(function(mutations) {
@@ -23,10 +24,13 @@
     // pass in the target node, as well as the observer options
     observer.observe(document.body, config);
     
+
+
     // set up listener for toggle; whenever it gets a new value, it should
     // run makeUnicorns accordingly
     chrome.runtime.onMessage.addListener(function(request) {
         toggle = request.greeting;
+        if(request.listOfImages != null) { unicornImageList = request.listOfImages;}
         makeUnicorns(toggle);
     });
     
@@ -150,13 +154,13 @@ function makeUnicorns(toggleState) {
         function chooseBestImage(width, height) {
 
             // url, width, height
-            var unicornList = [
-                    ['https://openmerchantaccount.com/img2/unicorn.png',264, 191],
-                    ['https://openmerchantaccount.com/img2/defs_a_unicorn.jpg',236, 211],
-                    ['https://openmerchantaccount.com/img2/unicorn_tongue.png',540,530],
-                    ['https://openmerchantaccount.com/img2/unicorn_cat.jpg',1920,1080],
-                    ['https://openmerchantaccount.com/img2/mlp.png',1024,1103]
-                  ];
+            // var TempunicornList = [
+            //         ['https://openmerchantaccount.com/img2/unicorn.png',264, 191],
+            //         ['https://openmerchantaccount.com/img2/defs_a_unicorn.jpg',236, 211],
+            //         ['https://openmerchantaccount.com/img2/unicorn_tongue.png',540,530],
+            //         ['https://openmerchantaccount.com/img2/unicorn_cat.jpg',1920,1080],
+            //         ['https://openmerchantaccount.com/img2/mlp.png',1024,1103]
+            //       ];
 
 
             var ratio = width / height; // ratio of our image
@@ -167,13 +171,13 @@ function makeUnicorns(toggleState) {
             var bestIndex = 0;
             var bestRatio = 0;
             var curRatio = 0;
-            for (var i = 0; i < unicornList.length-1; i++) {
+            for (var i = 0; i < unicornImageList.length-1; i++) {
                 // Find the ratio of the current entry
-                curRatio = unicornList[i][1]/unicornList[i][2];
+                curRatio = unicornImageList[i][1]/unicornImageList[i][2];
                 // If they are the same Aspect Ratio
                 if(curRatio == bestRatio) {
                     // If the new one is closer-sized to the original
-                    if(Math.abs(unicornList[i][1] - width) > Math.abs(unicornList[bestIndex][1] - width)) {
+                    if(Math.abs(unicornImageList[i][1] - width) > Math.abs(unicornImageList[bestIndex][1] - width)) {
                         bestIndex = i;
                         // don't need to change bestRatio; they're the same.
                     }
@@ -190,19 +194,15 @@ function makeUnicorns(toggleState) {
 
             }
             console.log("best contender is image " + bestIndex + " with aspect ratio " + bestRatio);
-            return unicornList[bestIndex][0];
+            return unicornImageList[bestIndex][0];
         }
 
         function randomImage() {
-            var unicorns = [
-                            'https://openmerchantaccount.com/img2/unicorn.png',
-                            'https://openmerchantaccount.com/img2/defs_a_unicorn.jpg',
-                            'https://openmerchantaccount.com/img2/unicorn_tongue.png',
-                            'https://openmerchantaccount.com/img2/unicorn_cat.jpg',
-                            'https://openmerchantaccount.com/img2/mlp.png']
             var randomChance = Math.random();
-            randomChance = Math.floor(randomChance*unicorns.length);
-            return unicorns[randomChance];
+            // randomChance = Math.floor(randomChance*unicorns.length);
+            // return unicorns[randomChance];
+            randomChance = Math.floor(randomChance*unicornImageList.length);
+            return unicornImageList[randomChance][0];
         }
 
         function randomSquareImage(){
