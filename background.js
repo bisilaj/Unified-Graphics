@@ -9,12 +9,24 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 	if (toggle == 0) {
         chrome.browserAction.setIcon({path: "icon.png"});
   		toggle = 1;
-  		
-		makeUnicorns(toggle);
+        
+        chrome.runtime.onMessage.addListener(function(request) {
+            chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+                chrome.tabs.sendMessage(tabs[0].id, {greeting: toggle});
+            });
+        });
+        chrome.tabs.reload();
+        
   	}
   	else {
         chrome.browserAction.setIcon({path: "iconoff.png"});
   		toggle = 0;
+        
+        chrome.runtime.onMessage.addListener(function(request) {
+            chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+                chrome.tabs.sendMessage(tabs[0].id, {greeting: toggle});
+            });
+        });
   		//off
 
   	}
