@@ -2,25 +2,17 @@
 * Carlhacks project by Joe Adkisson, Jon Bisila, Julia Connelly, and Kiya Govek
 */
 
-    //Create an observer...
-    var target = document.body;
-    
-    chrome.runtime.onMessage.addListener(function(request) {
-        toggle = request.greeting;
-    });
- 
+    var toggle = 0; // default to 0, but this should be set the right value pretty fast
+
     // create an observer instance
     var observer = new window.MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
             console.log('mutation type: '+ mutation.type);
             if(mutation.type == 'childList') {
                 if (mutation.addedNodes.length >= 1) {
-                          
-                    chrome.runtime.sendMessage({greeting: "gimme the toggle dammit"});
-                    chrome.runtime.onMessage.addListener(function(request) {
-                        var toggle = request.greeting;
-                    });
-                    
+                    // // We don't need to ask for toggle again - we should already know,
+                    // // and it's the background script's responsibility to say when
+                    // // it changes.
                     makeUnicorns(toggle);
                 }
             }
@@ -28,16 +20,19 @@
     });
     // configuration of the observer:
     var config = { childList: true, subtree:true, characterData:true };
- 
     // pass in the target node, as well as the observer options
-    observer.observe(target, config);
+    observer.observe(document.body, config);
     
-    chrome.runtime.sendMessage({greeting: "gimme the toggle dammit"});
+    // set up listener for toggle; whenever it gets a new value, it should
+    // run makeUnicorns accordingly
     chrome.runtime.onMessage.addListener(function(request) {
-        var toggle = request.greeting;
+        toggle = request.greeting;
+        makeUnicorns(toggle);
     });
+    
+    // ask for toggle for the initial pageload
+    chrome.runtime.sendMessage({greeting: "gimme the toggle dammit"});
 
-    makeUnicorns(toggle);
 
 
 // Unicorn Mega-function. Makes all images on a page into unicorn images.
@@ -110,30 +105,30 @@ function makeUnicorns(toggleState) {
             var width = image.getAttribute('width');
             var style = image.getAttribute('style');
             if (width) {
-                return width
+                return width;
             } else if (style) {
                 var width_regex = /width: ([0-9]*)px;/;
                 var width_match = style.match(width_regex);
                 if (width_match) {
-                    return width_match[1]
+                    return width_match[1];
                 }
             }
-            return ""
+            return "";
         }
 
         function getHeight(image) {
             var height = image.getAttribute('height');
             var style = image.getAttribute('style');
             if (height) {
-                return height
+                return height;
             } else if (style) {
                 var height_regex = /height: ([0-9]*)px;/;
                 var height_match = style.match(height_regex);
                 if (height_match) {
-                    return height_match[1]
+                    return height_match[1];
                 }
             }
-            return ""
+            return "";
         }
 
 
@@ -146,16 +141,6 @@ function makeUnicorns(toggleState) {
                 return randomImage();
             } else {
                 return chooseBestImage(width, height);
-                // var ratio = width / height;
-                // if (ratio == 1.0) {
-                //     return randomSquareImage();
-                // } else if (ratio > 1.3) {
-                //     return 'https://openmerchantaccount.com/img2/unicorn.png';
-                // } else if (ratio > 0.9) {
-                //     return 'https://openmerchantaccount.com/img2/unicorn_tongue.png';
-                // } else {
-                //     return 'https://openmerchantaccount.com/img2/mlp.png';
-                // }
             }
         }
 
