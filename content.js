@@ -4,6 +4,8 @@
 
     var toggle = 0; // default to 0, but this should be set the right value pretty fast
     var unicornImageList = [];
+    var unicornSquareList = [];
+    var squareTolerance = 0.25;
 
     // create an observer instance
     var observer = new window.MutationObserver(function(mutations) {
@@ -30,7 +32,26 @@
     // run makeUnicorns accordingly
     chrome.runtime.onMessage.addListener(function(request) {
         toggle = request.greeting;
-        if(request.listOfImages != null) { unicornImageList = request.listOfImages;}
+        if(request.listOfImages != null) { 
+            unicornImageList = request.listOfImages;
+            for(var i = 0; i < unicornImageList.length - 1; i++) {
+                // if W/L is within bounds
+                var greater = 0;
+                var lesser = 0;
+                if (unicornImageList[i][1] > unicornImageList[i][2]) {
+                    greater = unicornImageList[i][1];
+                    lesser = unicornImageList[i][2];
+                } else {
+                    greater = unicornImageList[i][2];
+                    lesser = unicornImageList[i][1];
+                }
+                //alert("greater: " + greater + ", lesser: "+lesser+", ratio: "+greater/lesser);
+                if(greater / lesser <= 1+squareTolerance) {
+                    unicornSquareList.push(unicornImageList[i]);
+                }
+            }
+            //alert(unicornSquareList);
+        }
         makeUnicorns(toggle);
     });
     
@@ -206,11 +227,9 @@ function makeUnicorns(toggleState) {
         }
 
         function randomSquareImage(){
-            var squareUnicorns = [
-                                    'https://openmerchantaccount.com/img2/unicorn_tongue.png' ]
             var randomChance = Math.random();
-            randomChance = Math.floor(randomChance*squareUnicorns.length);
-            return squareUnicorns[randomChance];
+            randomChance = Math.floor(randomChance*unicornSquareList.length);
+            return unicornSquareList[randomChance][0];
 
         }
 
