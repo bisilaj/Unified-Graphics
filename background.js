@@ -1,9 +1,6 @@
 /*
 * Carlhacks project by Joe Adkisson, Jon Bisila, Julia Connelly, and Kiya Govek
 * Thanks to The Chromium Authors for ideas on source code formatting
-
-* I put this comment here to test some git stuff
-
 */
 var toggle = 0;
 
