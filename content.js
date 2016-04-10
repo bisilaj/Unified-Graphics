@@ -27,6 +27,9 @@
 
 // Unicorn Mega-function. Makes all images on a page into unicorn images.
 function makeUnicorns(toggleState) {
+
+    
+
     console.log("Making some unicorns...");
     if(toggleState == true) {
         console.log("Received go-ahead for unification...");
@@ -120,6 +123,14 @@ function makeUnicorns(toggleState) {
             return ""
         }
 
+var unicornList = [
+                    ['https://openmerchantaccount.com/img2/unicorn.png',1.1],
+                    ['https://openmerchantaccount.com/img2/defs_a_unicorn.jpg',1.1],
+                    ['https://openmerchantaccount.com/img2/unicorn_tongue.png',1.1],
+                    ['https://openmerchantaccount.com/img2/unicorn_cat.jpg',1.1],
+                    ['https://openmerchantaccount.com/img2/mlp.png',1.1]]
+
+
         function chooseImage(width, height) {
             if (!width || !height) {
                 return randomImage();
@@ -136,6 +147,25 @@ function makeUnicorns(toggleState) {
                 }
             }
         }
+
+        // // Chooses the image whose aspect ratio is the best fit for the image
+        // // that it's replacing. The 'ratio' argument, for the record, is 
+        // // width / height.
+        // function chooseBestImage(width, height) {
+        //     var ratio = width / height; // ratio of our image
+        //     if (ratio = 1) { return randomSquareImage()}
+        //     var bestImage = '';
+        //     var bestRatio = 0;
+        //     for (var i = 0; i < unicornList.length; i++) {
+        //         if(unicornList[i][1] = bestRatio) {
+        //         
+        //         }
+        //         if(unicornList[i][1] > bestRatio &&& unicornList[i][1] <= ratio) {
+
+        //         }
+
+        //     }
+        // }
 
         function randomImage() {
             var unicorns = [
