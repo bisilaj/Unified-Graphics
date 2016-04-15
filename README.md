@@ -16,3 +16,5 @@ https://openmerchantaccount.com/img2/night-mare.jpg
 https://openmerchantaccount.com/img2/dead_unicorn.jpg
 https://openmerchantaccount.com/img2/swirl.png
 https://openmerchantaccount.com/img2/moon_unicorn.jpg
+https://openmerchantaccount.com/img2/twilight_sparkle.png
+https://openmerchantaccount.com/img2/hacker_unicorn.jpg
